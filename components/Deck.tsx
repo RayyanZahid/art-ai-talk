@@ -73,14 +73,18 @@ export function Deck() {
   const current = slides[index];
 
   // Touch swipe (mobile / trackpad-as-touchscreen)
-  const touchStart = useRef<number | null>(null);
+  // Track both axes so we can ignore vertical scrolls on slides whose content
+  // overflows (Examples, Counters, etc.) — only horizontal swipes navigate.
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
-    touchStart.current = e.touches[0].clientX;
+    touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   };
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStart.current == null) return;
-    const dx = e.changedTouches[0].clientX - touchStart.current;
-    if (Math.abs(dx) > 60) {
+    const dx = e.changedTouches[0].clientX - touchStart.current.x;
+    const dy = e.changedTouches[0].clientY - touchStart.current.y;
+    // Only treat as a slide-nav swipe if mostly horizontal AND moved enough.
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
       if (dx < 0) goNext();
       else goPrev();
     }
@@ -111,16 +115,18 @@ export function Deck() {
         </AnimatePresence>
       </div>
 
-      {/* Click-zone navigation: invisible left/right halves for click-to-advance */}
+      {/* Click-zone navigation: invisible left/right halves for click-to-advance.
+          Desktop only — on touch devices we rely on swipe so taps don't intercept
+          interactions inside slides. */}
       <button
         aria-label="Previous slide"
         onClick={goPrev}
-        className="fixed left-0 top-12 bottom-12 w-[10vw] z-30 cursor-w-resize bg-transparent"
+        className="hidden sm:block fixed left-0 top-12 bottom-12 w-[8vw] z-30 cursor-w-resize bg-transparent"
       />
       <button
         aria-label="Next slide"
         onClick={goNext}
-        className="fixed right-0 top-12 bottom-12 w-[10vw] z-30 cursor-e-resize bg-transparent"
+        className="hidden sm:block fixed right-0 top-12 bottom-12 w-[8vw] z-30 cursor-e-resize bg-transparent"
       />
 
       <NotesDrawer

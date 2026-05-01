@@ -50,14 +50,21 @@ export function Slide({ children, direction = 1, className, bare }: SlideProps) 
       exit="exit"
       className={cn(
         "absolute inset-0",
-        bare ? "p-0" : "flex items-center justify-center px-[6vw] py-[6vh]",
+        // Allow vertical scroll on slides that overflow the viewport (mostly mobile).
+        // Desktop content fits, so this is mostly a safety net.
+        !bare && "overflow-y-auto overscroll-contain",
+        bare
+          ? "p-0"
+          : "px-[5vw] py-[7vh] sm:px-[6vw] sm:py-[6vh] pb-[14vh] sm:pb-[6vh]",
         className,
       )}
     >
       <div
         className={cn(
           "relative z-10",
-          bare ? "w-full h-full" : "w-full max-w-[1200px] mx-auto",
+          bare
+            ? "w-full h-full"
+            : "w-full max-w-[1200px] mx-auto min-h-full flex flex-col justify-center",
         )}
       >
         {children}
