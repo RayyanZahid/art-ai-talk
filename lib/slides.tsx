@@ -10,6 +10,7 @@ import { ArgumentSlide } from "@/components/slides/ArgumentSlide";
 import { BlindSpotsSlide } from "@/components/slides/BlindSpotsSlide";
 import { CountersSlide } from "@/components/slides/CountersSlide";
 import { CallToActionSlide } from "@/components/slides/CallToActionSlide";
+import { LearningLayerLabsSlide } from "@/components/slides/LearningLayerLabsSlide";
 import { CloseSlide } from "@/components/slides/CloseSlide";
 import { QuoteSlide } from "@/components/slides/QuoteSlide";
 import { SectionSlide } from "@/components/slides/SectionSlide";
@@ -195,6 +196,13 @@ export const slides: SlideEntry[] = [
     notes:
       "Five things. Pick the one that hits hardest. The aim is to leave one specific action in every engineer's head. If they remember nothing else, they remember 'pair-program with an artist next sprint.' Optional bonus: 'add an aesthetic line to your post-training rubric.' If you cannot rate it, you cannot improve it.",
     render: ({ direction }) => <CallToActionSlide direction={direction} />,
+  },
+  {
+    id: "lll",
+    title: "Learning Layer Labs",
+    notes:
+      "Personal-stake slide. The audience just heard 'do these five things.' Now show them you do. Brief setup: 'I run an initiative in Brooklyn called Learning Layer Labs. We work with artists, roboticists, and coding agents on the merger of AI, tech, and art. The thing you are looking at is what that looks like — one biomorphic motif carried across mural, canvas, sculpture, robotic arm, and identity. The pattern is the system. The system is the pattern.' Don't over-explain. Let the work do the work. ~45-60 seconds on this slide. Land 'we're hiring / always looking for collaborators' if it lands; otherwise pivot straight to Eno.",
+    render: ({ direction }) => <LearningLayerLabsSlide direction={direction} />,
   },
   {
     id: "close",
