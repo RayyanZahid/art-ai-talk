@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Art and AI — bridging the gap between artists and coders
 
-## Getting Started
+A 25-minute conference talk for the AI Infra crowd. Built as a Next.js single-page deck with a custom slide framework, keyboard navigation, speaker notes, and motion-driven transitions. Deployed on Vercel.
 
-First, run the development server:
+> **Thesis:** Artists have been writing code for sixty years. Coding agents just collapsed the gap between taste and shipping software. Your AI infra is incomplete without them.
+
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** for styling
+- **motion/react** (formerly framer-motion) for animations
+- A small custom canvas backdrop (Vera Molnár-inspired drift, 10 PRINT maze, dither field)
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Keyboard
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Key | Action |
+|-----|--------|
+| → / Space / `j` / `l` | Next slide |
+| ← / `k` / `h` | Previous slide |
+| `Home` / `End` | First / last slide |
+| `n` | Toggle speaker notes |
+| `o` | Toggle overview grid |
 
-## Learn More
+Slides are linkable: `/#5` jumps to slide 5.
 
-To learn more about Next.js, take a look at the following resources:
+## Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+  page.tsx            renders <Deck />
+  layout.tsx          fonts (Geist + Instrument Serif), metadata
+  globals.css         tokens, paper-grain, dark theme
+components/
+  Deck.tsx            state, hash-sync, keyboard, touch, overview
+  Slide.tsx           motion enter/exit wrapper
+  Chrome.tsx          progress bar, counter, kicker
+  NotesDrawer.tsx     speaker notes overlay
+  visuals/
+    GenerativeBackdrop.tsx
+  slides/             one component per slide
+lib/
+  slides.tsx          registry: id, title, notes, render
+  useKeyboardNav.ts
+  cn.ts
+research/             source material with [UNVERIFIED] flags
+  01-coding-agents-in-art.md
+  02-lineage-and-argument.md
+  03-the-argument.md
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Sources
 
-## Deploy on Vercel
+The deck only quotes from primary or near-primary sources. See `research/` for the full bibliography. Anything marked `[UNVERIFIED]` did **not** make it onto a slide.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Strongest five citations:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Karpathy — [Vibe coding tweet, Feb 2 2025](https://x.com/karpathy/status/1886192184808149383)
+2. Simon Willison — [Not all AI-assisted programming is vibe coding, Mar 19 2025](https://simonwillison.net/2025/Mar/19/vibe-coding/)
+3. Sam Aaron / Tau5 — [CDM long-form](https://cdm.link/tau5-hub-for-live-coding/)
+4. Anthropic — [`algorithmic-art` Skill](https://github.com/anthropics/skills/blob/main/skills/algorithmic-art/SKILL.md)
+5. Sol LeWitt — [Paragraphs on Conceptual Art (Monoskop PDF)](https://monoskop.org/images/3/3d/LeWitt_Sol_1967_1999_Paragraphs_on_Conceptual_Art.pdf)
+
+## License
+
+Talk content © Rayyan Zahid 2026. Code MIT.

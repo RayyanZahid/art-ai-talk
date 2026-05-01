@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #f5f3ee;
+  --ink: #f5f3ee;
+  --paper: #0a0a0a;
+  --hot: #ff2d6f;
+  --acid: #b6ff3c;
+  --sky: #6ee7ff;
+  --gold: #f5c54a;
+  --muted: #8c8a82;
+  --line: rgba(245, 243, 238, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-hot: var(--hot);
+  --color-acid: var(--acid);
+  --color-sky: var(--sky);
+  --color-gold: var(--gold);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+/* Selection: aggressive contrast, like a marker on a print proof */
+::selection {
+  background: var(--hot);
+  color: var(--paper);
+}
+
+/* Subtle paper grain — barely visible, but it kills the dead-flat-black look */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96 0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.headline {
+  font-family: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  font-feature-settings: "ss01", "kern", "liga";
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.kicker {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Scrollbar styling for the speaker-notes drawer if used */
+.notes-scroll::-webkit-scrollbar { width: 8px; }
+.notes-scroll::-webkit-scrollbar-thumb {
+  background: rgba(245, 243, 238, 0.15);
+  border-radius: 4px;
+}
+
+/* Hide native focus rings on slide-nav buttons but keep accessibility */
+.nav-btn:focus { outline: none; }
+.nav-btn:focus-visible {
+  outline: 2px solid var(--hot);
+  outline-offset: 4px;
+}
+
+/* For the hero canvas, let it sit beneath content */
+.bg-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* A subtle vignette on every slide so center content always reads */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 2;
+}
+
+/* Print: when exporting to PDF later, give each slide a page */
+@media print {
+  body { overflow: visible; }
+  .slide-page { page-break-after: always; }
 }
