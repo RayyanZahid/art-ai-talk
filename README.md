@@ -71,4 +71,4 @@ Strongest five citations:
 
 ## License
 
-Talk content © Rayyan Zahid 2026. Code MIT.
+Code MIT. Talk content © the author, 2026.

@@ -57,9 +57,7 @@ export function CloseSlide({ direction }: { direction: number }) {
           >
             <span className="text-hot">Thank you.</span>
             <span className="text-ink/25">·</span>
-            <span>Rayyan Zahid</span>
-            <span className="text-ink/25">·</span>
-            <span>github.com/RayyanZahid/art-ai-talk</span>
+            <span>art-ai-talk.vercel.app</span>
           </motion.div>
         </div>
       </div>

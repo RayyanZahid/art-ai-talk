@@ -68,10 +68,6 @@ export function TitleSlide({ direction }: { direction: number }) {
             transition={{ delay: 1.8, duration: 0.6 }}
             className="mt-12 flex items-baseline gap-6 text-sm text-ink/40 font-mono"
           >
-            <span>Rayyan Zahid</span>
-            <span className="text-ink/20">·</span>
-            <span>@RayyanZahid</span>
-            <span className="text-ink/20">·</span>
             <span className="text-ink/30">press → to begin</span>
           </motion.div>
         </div>
