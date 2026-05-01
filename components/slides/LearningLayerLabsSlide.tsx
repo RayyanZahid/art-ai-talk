@@ -63,6 +63,10 @@ export function LearningLayerLabsSlide({ direction }: { direction: number }) {
               <h2 className="headline text-3xl md:text-[2.6rem] leading-[1] text-ink">
                 Learning <span className="italic text-sky">Layer</span> Labs.
               </h2>
+              <div className="mt-2 flex items-baseline gap-2">
+                <span className="block w-6 h-px bg-acid" />
+                <span className="kicker text-acid">all works · Devinder Sodhi</span>
+              </div>
             </div>
           </div>
           <p className="text-sm text-ink/70 leading-relaxed mt-4">

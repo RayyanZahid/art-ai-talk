@@ -27,7 +27,7 @@ export type SlideEntry = {
 export const slides: SlideEntry[] = [
   {
     id: "title",
-    title: "Title",
+    title: "",
     notes:
       "Open with a beat. Don't say the title — let it sit. Then: 'I'm not here to tell you AI will replace artists, or that artists will save AI. I'm here to argue that the most interesting software being shipped right now lives in the gap between them — and that coding agents just collapsed that gap.'",
     render: ({ direction }) => <TitleSlide direction={direction} />,
@@ -201,7 +201,7 @@ export const slides: SlideEntry[] = [
     id: "lll",
     title: "Learning Layer Labs",
     notes:
-      "Personal-stake slide. The audience just heard 'do these five things.' Now show them you do. Brief setup: 'I run an initiative in Brooklyn called Learning Layer Labs. We work with artists, roboticists, and coding agents on the merger of AI, tech, and art. The thing you are looking at is what that looks like — one biomorphic motif carried across mural, canvas, sculpture, robotic arm, and identity. The pattern is the system. The system is the pattern.' Don't over-explain. Let the work do the work. ~45-60 seconds on this slide. Land 'we're hiring / always looking for collaborators' if it lands; otherwise pivot straight to Eno.",
+      "Personal-stake slide. The audience just heard 'do these five things.' Now show them you do. Brief setup: 'I run an initiative called Learning Layer Labs. We work with artists, roboticists, and coding agents on the merger of AI, tech, and art. Every piece you are looking at is by Devinder Sodhi — the painter we collaborate with. One biomorphic motif carried across mural, canvas, sculpture, robotic arm, and identity. The pattern is the system. The system is the pattern.' Always say Devinder's name out loud — credit is the asks-of-the-talk made manifest. Don't over-explain. Let the work do the work. ~45-60 seconds on this slide. Land 'we're hiring / always looking for collaborators' if it lands; otherwise pivot straight to the close.",
     render: ({ direction }) => <LearningLayerLabsSlide direction={direction} />,
   },
   {

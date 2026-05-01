@@ -49,13 +49,17 @@ export function Slide({ children, direction = 1, className, bare }: SlideProps) 
       animate="center"
       exit="exit"
       className={cn(
-        "absolute inset-0 flex items-center justify-center",
-        "px-[6vw] py-[6vh]",
-        bare && "p-0",
+        "absolute inset-0",
+        bare ? "p-0" : "flex items-center justify-center px-[6vw] py-[6vh]",
         className,
       )}
     >
-      <div className={cn("relative z-10 w-full", !bare && "max-w-[1200px] mx-auto")}>
+      <div
+        className={cn(
+          "relative z-10",
+          bare ? "w-full h-full" : "w-full max-w-[1200px] mx-auto",
+        )}
+      >
         {children}
       </div>
     </motion.section>
